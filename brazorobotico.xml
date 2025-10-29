@@ -80,7 +80,7 @@
   <worldbody>
 
    <!--generamos iluminación de la escena-->
-    <light name="spotlight" mode="targetbodycom" target="base" pos="0 -1 2"/>
+    <light name="spotlight" mode="targetbodycom" target="base_brazo" pos="0 -1 2"/>
 
    <!--iniciamos cargando la base como "hija" del brazo, estará en el origen del sistema (se relaciona con el cuerpo padre (brazo)-->
     <body name="base_brazo" pos="0 0 0" childclass="brazo">
