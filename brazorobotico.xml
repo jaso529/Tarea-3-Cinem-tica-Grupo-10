@@ -3,7 +3,7 @@
 <mujoco model="brazorobotico">
 
   <!--se setean las unidades de los ángulos a radianes y el repositorio de donde se sacarán los modelos-->
-  <compiler angle="radian" meshdir="https://raw.githubusercontent.com/jaso529/Tarea-3-Cinem-tica-Grupo-10/main/modelos/" autolimits="true"/>
+  <compiler angle="radian" meshdir="modelos" autolimits="true"/>
 
  <!--se crean las configuraciones generales del brazo, como la resistencia al giro y la inercia del motor-->
   <default>
