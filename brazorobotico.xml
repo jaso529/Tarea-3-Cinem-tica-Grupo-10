@@ -1,11 +1,11 @@
- <!--se crea el modelo con nombre "brazorobotico"-->
+<!--basándonos en el código proporcionado por el equipo docente-->
+<!--se crea el modelo con nombre "brazorobotico"-->
 <mujoco model="brazorobotico">
 
-   <!--se setean las unidades de los ángulos a radianes y el repositorio de donde se sacarán los modelos-->
-  
+  <!--se setean las unidades de los ángulos a radianes y el repositorio de donde se sacarán los modelos-->
   <compiler angle="radian" meshdir="https://raw.githubusercontent.com/jaso529/Tarea-3-Cinem-tica-Grupo-10/main/modelos/" autolimits="true"/>
 
-  <!--se crean las configuraciones generales del brazo, como la resistencia al giro y la inercia del motor-->
+ <!--se crean las configuraciones generales del brazo, como la resistencia al giro y la inercia del motor-->
   <default>
     <default class="brazo">
       <geom friction="0.2" margin="0.001"/>
@@ -13,73 +13,93 @@
       <position kp="60" ctrlrange="-3.141592 3.141592" forcerange="-7 7"/>
 
 
-    <!--las configuraciones básicas para los joints (uniones):-->
+     <!--las configuraciones básicas para los joints (uniones):-->
 
-      <!--creamos la base, con un rango de rotación entre 0 y pi/2 y rota en z positivo (0 0 1)-->
+     <!--creamos la base, con un rango de rotación entre 0 y pi/2 y rota en z positivo (0 0 1)-->
       <default class="base">
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14">
       <default>
         
-      <!--repetimos lo anterior para los otros joints (motores) del brazo robótico-->
-
-      <default class="link1">
+     <!--repetimos lo anterior para los otros joints (motores) del brazo robótico-->
+      <default class="joint1"> <!--joint que permite rotación entre base y cintura-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14">
       <default>
 
-      <default class="link2">
+      <default class="joint2"> <!--joint que permite rotación entre cintura y hombro-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14">
       <default>
 
-      <default class="link3">
+      <default class="joint3"> <!--joint que permite rotación del codo sobre si mismo-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14">
       <default>
 
-      <default class="link4">
+      <default class="joint4"> <!--joint que permite rotación entre muñeca y gripper-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14">
       <default>
 
-      <default class="link5">
+      <default class="joint5"> <!--joint que permite rotación del gripper sobre si mismo-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14">
       <default>
 
-
-    
-
-        
-        
+     <!--generamos las configuraciones por defecto visuales-->
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2" material="default_material"/>
+      </default>
     </default>
   </default>
 
+
+ <!--falta poner colores a cada cuerpo-->
   <asset>
     <material name="gris" specular="0.5" shininess="0.25" rgba="0.6 0.6 0.6 1"/>
     <material name="azul" specular="0.5" shininess="0.25" rgba="0.2 0.5 0.8 1"/>
     <material name="verde" specular="0.5" shininess="0.25" rgba="0.3 0.6 0.3 1"/>
     <material name="naranja" specular="0.5" shininess="0.25" rgba="0.9 0.4 0.1 1"/>
 
-    <mesh file="base.obj"/>
-    <mesh file="cintura.obj"/>
-    <mesh file="hombro.obj"/>
-    <mesh file="codo.obj"/>
-    <mesh file="muneca.obj"/>
-    <mesh file="gripper.obj"/>
+
+   <!--cargamos las mallas (modelos 3D)-->
+    <mesh class="brazo" file="base.obj"/>
+    <mesh class="brazo" file="link1.obj"/>
+    <mesh class="brazo" file="cintura.obj"/>
+    <mesh class="brazo" file="link2.obj"/>
+    <mesh class="brazo" file="hombro.obj"/>
+    <mesh class="brazo" file="link3.obj"/>
+    <mesh class="brazo" file="codo.obj"/>
+    <mesh class="brazo" file="muneca.obj"/>
+    <mesh class="brazo" file="gripper.obj"/>
     </asset>
 
+
+ <!--en la siguiente sección vamos a generar el brazo robótico como tal-->
   <worldbody>
-    <light name="spotlight" mode="targetbodycom" target="codo" pos="0 -1 2"/>
 
+   <!--generamos iluminación de la escena-->
+    <light name="spotlight" mode="targetbodycom" target="base" pos="0 -1 2"/>
 
-    <body name="base" pos="0 0 0" childclass="brazo">
+   <!--iniciamos cargando la base como "hija" del brazo, estará en el origen del sistema (se relaciona con el cuerpo padre (brazo)-->
+    <body name="base_brazo" pos="0 0 0" childclass="brazo">
+
+     <!--definimos una inercia-->
       <inertial mass="1.5" pos="0 0 0.05" diaginertia="0.01 0.01 0.02"/>
-      <joint name="j_base_z" axis="0 0 1" range="-3.14 3.14"/>
+
+     <!--conectamos a la base con el primer joint (le dara el grado de libertad de girar con respecto al eje z)-->
+      <joint class="base" name="base_joint"/>
+
+     <!--asociamos la base a la geometría visible del cuerpo-->
       <geom type="mesh" mesh="base" material="naranja" group="1"/>
 
-      <body name="cintura" pos="0 0 0.106">
+     
+     <!--ahora necesitamos anidar al resto de partes del brazo-->
+
+     <!--primero generamos el primer link-->
+      
+      <body name="link1_brazo" pos="0 0 0.106" axisangle="1 0 0 90"> <!--giramos el sistema coordenadao para poder colocar el link 1 horizontal-->
         <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
         <joint name="j_cintura_y" axis="0 1 0" range="-1.57 1.57"/>
         <geom type="mesh" mesh="cintura" material="naranja" group="1"/>
