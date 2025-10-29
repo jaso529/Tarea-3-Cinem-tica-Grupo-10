@@ -143,6 +143,19 @@
     </body>
   </worldbody>
 
+<!--desactivamos las colisiones-->  
+  <contact>
+  <exclude body1="base_brazo" body2="link1_brazo"/>
+  <exclude body1="link1_brazo" body2="cintura_brazo"/>
+  <exclude body1="cintura_brazo" body2="link2_brazo"/>
+  <exclude body1="link2_brazo" body2="codo_brazo"/>
+  <exclude body1="codo_brazo" body2="link3_brazo"/>
+  <exclude body1="link3_brazo" body2="muñeca_brazo"/>
+  <exclude body1="muñeca_brazo" body2="gripper_brazo"/>
+ </contact>
+
+
+
 <!--se generan los actuadores (motores a actuar en cada joint definido)\-->  
   <actuator>
     <position class="base" name="base" joint="base_joint"/>
