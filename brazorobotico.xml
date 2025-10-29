@@ -1,93 +1,83 @@
-<mujoco model="brazo">
-  <compiler angle="radian" meshdir="modelos" texturedir="modelos" autolimits="true"/>
+<mujoco model="brazo_robotico_personalizado">
+  <compiler angle="radian" meshdir="TU_URL_DE_GITHUB/modelos/" autolimits="true"/>
 
-  
+  <option gravity="0 0 -9.81" />
+
   <default>
     <default class="brazo">
-      <geom friction="0.2" margin="0.001"/>
-      <joint damping="1.0" armature="0.01"/>
-      <position kp="60" ctrlrange="-3.141592 3.141592" forcerange="-7 7"/>
-
-
-      <default class="hombro">
-        <joint range="0 3.14" axis="0 0 1"/>
-        <position ctrlrange="0 3.14"/>
-      </default>
-      <default class="codo">
-        <joint range="-2.96 2.96" axis="0 0 1"/>
-        <position ctrlrange="-2.96 2.96"/>
-      </default>
-      <default class="z">
-        <joint range="0 0.2" axis="0 0 -1" type="slide"/>
-        <position ctrlrange="0 0.2"/>
-      </default>
-      <!-- visual -->
-      <default class="visual">
-        <geom type="mesh" contype="0" conaffinity="0" group="2" material="default_material"/>
-      </default>
+      <geom friction="0.9" solimp="0.95 0.99 0.001" solref="0.004 1" margin="0.001"/>
+      <joint type="hinge" damping="0.5" armature="0.01" limited="true"/>
+      <position kp="10" forcerange="-100 100"/>
     </default>
   </default>
 
-  <!-- Define assets -->
   <asset>
-    <material name="default_material" specular="0" shininess="0.25" rgba="0.6 0.6 0.6 1"/>
-    <material name="black" specular="0" shininess="0.25" rgba="0.15 0.15 0.15 1"/>
-    <material name="collision_material" specular="0" shininess="0.25" rgba="1.0 0.5 0.0 0.8"/>
-    <mesh class="scara" file="base_scara.obj"/>
-    <mesh class="scara" file="hombro.obj"/>
-    <mesh class="scara" file="codo.obj"/>
-    <mesh class="scara" file="z.obj"/>
-  </asset>
+    <material name="gris" specular="0.5" shininess="0.25" rgba="0.6 0.6 0.6 1"/>
+    <material name="azul" specular="0.5" shininess="0.25" rgba="0.2 0.5 0.8 1"/>
+    <material name="verde" specular="0.5" shininess="0.25" rgba="0.3 0.6 0.3 1"/>
+    <material name="naranja" specular="0.5" shininess="0.25" rgba="0.9 0.4 0.1 1"/>
+
+    <mesh file="base.obj"/>
+    <mesh file="cintura.obj"/>
+    <mesh file="hombro.obj"/>
+    <mesh file="codo.obj"/>
+    <mesh file="muneca.obj"/>
+    <mesh file="gripper.obj"/>
+    </asset>
 
   <worldbody>
-    <light name="spotlight" mode="targetbodycom" target="base_scara" pos="0 -1 2"/>
+    <light name="spotlight" mode="targetbodycom" target="codo" pos="0 -1 2"/>
+    <geom name="floor" type="plane" size="2 2 0.1" rgba="0.8 0.8 0.8 1"/>
 
-    <!-- Body -->
-    <body name="base_scara" pos="0 0 0.285" childclass="scara">
-      <inertial mass="1.410" pos="0.094622 0.000221 0.120537" quat="1 0 0 0" diaginertia="0.001 0.0007 0.0007"/>
-      <geom class="visual" mesh="base_scara" material="default_material"/>
+    <body name="base" pos="0 0 0" childclass="brazo">
+      <inertial mass="1.5" pos="0 0 0.05" diaginertia="0.01 0.01 0.02"/>
+      <joint name="j_base_z" axis="0 0 1" range="-3.14 3.14"/>
+      <geom type="mesh" mesh="base" material="naranja" group="1"/>
 
-      <body name="link_hombro" pos="0 0 0.043">
-        <joint class="hombro" name="hombro_joint"/>
-        <inertial mass="0.248" pos="0 0 -0.02" quat="1 0 0 0" diaginertia="1E-4 1E-4 0.5E-4"/>
-        <geom class="visual" mesh="hombro" quat="1 0 0 0" pos="0 0 0"/>
+      <body name="cintura" pos="0 0 0.106">
+        <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
+        <joint name="j_cintura_y" axis="0 1 0" range="-1.57 1.57"/>
+        <geom type="mesh" mesh="cintura" material="naranja" group="1"/>
 
-        <body name="link_codo" pos="0.3 0.0 0">
-          <joint class="codo" name="codo_joint"/>
-          <inertial mass="0.042" pos="0 0 -0.0625" quat="1 0 0 0" diaginertia="2E-5 2E-5 0.2E-5"/>
-          <geom class="visual" mesh="codo" material="black" quat="1 0 0 0" pos="0 0 0"/>
+        <body name="hombro" pos="0 0 0.094">
+            <inertial mass="2.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.01"/>
+            <joint name="j_hombro_y" axis="0 1 0" range="-1.57 1.57"/>
+            <geom type="mesh" mesh="hombro" material="verde" group="1"/>
 
-          <body name="link_z" pos="0.33 0 -0.1">
-            <joint class="z" name="z_joint"/>
-            <inertial mass="0.1" pos="0 0 -0.06" quat="1 0 0 0" diaginertia="0.5E-3 0.5E-3 0.1E-3"/>
-            <geom class="visual" mesh="z" quat="1 0 0 0" pos="0 0 0"/>
-          </body>
+            <body name="codo" pos="0 0 0.344">
+                <inertial mass="2.0" pos="0 0 0.175" diaginertia="0.04 0.04 0.008"/>
+                <joint name="j_codo_z" axis="0 0 1" range="-3.14 3.14"/>
+                <geom type="mesh" mesh="codo" material="azul" group="1"/>
+
+                <body name="muneca" pos="0 0 0.350">
+                    <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
+                    <joint name="j_muneca_y" axis="0 1 0" range="-1.57 1.57"/>
+                    <geom type="mesh" mesh="muneca" group="1"/>
+
+                    <body name="gripper" pos="0 0 0.100">
+                        <inertial mass="0.3" pos="0 0 0.025" diaginertia="0.001 0.001 0.0005"/>
+                        <joint name="j_gripper_z" axis="0 0 1" range="-3.14 3.14"/>
+                        <geom type="mesh" mesh="gripper" material="gris" group="1"/>
+                        <site name="end_effector" pos="0 0 0.05" size="0.01"/>
+                    </body>
+                </body>
+            </body>
         </body>
       </body>
     </body>
   </worldbody>
 
-  <!-- Define actuators -->
-  <!-- class: is the class of the joint
-         name: is the label
-         joint: the name of the joint where the actuator is set
-    -->
   <actuator>
-
-
-    <position class="hombro" name="hombro" joint="hombro_joint"/>
-    <position class="codo" name="codo" joint="codo_joint"/>
-    <position class="z" name="z" joint="z_joint"/>
+    <position name="act_base_z"    joint="j_base_z"    ctrlrange="-3.14 3.14"/>
+    <position name="act_cintura_y" joint="j_cintura_y" ctrlrange="-1.57 1.57"/>
+    <position name="act_hombro_y"  joint="j_hombro_y"  ctrlrange="-1.57 1.57"/>
+    <position name="act_codo_z"    joint="j_codo_z"    ctrlrange="-3.14 3.14"/>
+    <position name="act_muneca_y"  joint="j_muneca_y"  ctrlrange="-1.57 1.57"/>
+    <position name="act_gripper_z" joint="j_gripper_z" ctrlrange="-3.14 3.14"/>
   </actuator>
-    <visual>
-    <global offheight="600" offwidth="800"/>
-    </visual>
-  <!-- Commands that define the home posture -->
+
   <keyframe>
-    <!-- x y z qw qx qy qz {qi} -->
-    <!-- qi are the generalized coordinates of all the joints -->
-    <key name="home" qpos="0 0 0"
-      ctrl=" 0 0 0"/>
+      <key name="home" qpos="0 0 0 0 0 0"/>
   </keyframe>
+
 </mujoco>
-  
