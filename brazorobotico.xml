@@ -106,6 +106,7 @@
 
         <body name="cintura_brazo" pos="0 0 0.01"> <!--posicionamos la base de la cintura en el extremo del primer link-->
             <inertial mass="2.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.01"/>
+          <joint class="joint2" name="cintura_joint"/>
             <geom type="mesh" mesh="cintura" material="verde" group="1" />
 
             <body name="link2_brazo" pos="0 0 0.344"> <!--posicionamos el inicio del segundo link al final de la cintura-->
@@ -125,6 +126,7 @@
                         
                           <body name="muñeca_brazo" pos="0 0 0.11">
                             <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
+                            <joint class="joint4" name="muneca_joint"/>
                             <geom type="mesh" mesh="muñeca" material="naranja" group="1" />
 
                               <body name="gripper_brazo" pos="0 0 0.1">
@@ -160,9 +162,11 @@
   <actuator>
     <position class="base" name="base" joint="base_joint"/>
     <position class="joint1" name="joint1" joint="link1_joint"/>
+    <position class="joint2" name="joint2" joint="cintura_joint"/>
     <position class="joint2" name="joint2" joint="link2_joint"/>
     <position class="joint3" name="joint3" joint="codo_joint"/>
     <position class="joint4" name="joint4" joint="link3_joint"/>
+    <position class="joint4" name="joint4" joint="muñeca_joint"/>
     <position class="joint5" name="joint5" joint="gripper_joint"/>
   </actuator>
         
@@ -171,8 +175,8 @@
     </visual>
         
   <keyframe>
-    <key name="home" qpos="0 0 0 0 0 0 "
-      ctrl=" 0 0 0 0 0 0 "/>
+    <key name="home" qpos="0 0 0 0 0 0 0 0 "
+      ctrl=" 0 0 0 0 0 0 0 0 "/>
   </keyframe>
         
 </mujoco>
