@@ -1,6 +1,11 @@
+ <!--se crea el modelo con nombre "brazorobotico"-->
 <mujoco model="brazorobotico">
+
+   <!--se setean las unidades de los ángulos a radianes y el repositorio de donde se sacarán los modelos-->
+  
   <compiler angle="radian" meshdir="https://raw.githubusercontent.com/jaso529/Tarea-3-Cinem-tica-Grupo-10/main/modelos/" autolimits="true"/>
 
+  <!--se crean las configuraciones generales del brazo, como la resistencia al giro y la inercia del motor-->
   <default>
     <default class="brazo">
       <geom friction="0.2" margin="0.001"/>
@@ -8,12 +13,45 @@
       <position kp="60" ctrlrange="-3.141592 3.141592" forcerange="-7 7"/>
 
 
-    !para los joints
-      !
+    <!--las configuraciones básicas para los joints (uniones):-->
+
+      <!--creamos la base, con un rango de rotación entre 0 y pi/2 y rota en z positivo (0 0 1)-->
       <default class="base">
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14">
       <default>
+        
+      <!--repetimos lo anterior para los otros joints (motores) del brazo robótico-->
+
+      <default class="link1">
+        <joint range="0 3.14" axis="0 0 1"/>
+        <position ctrlrange="0 3.14">
+      <default>
+
+      <default class="link2">
+        <joint range="0 3.14" axis="0 0 1"/>
+        <position ctrlrange="0 3.14">
+      <default>
+
+      <default class="link3">
+        <joint range="0 3.14" axis="0 0 1"/>
+        <position ctrlrange="0 3.14">
+      <default>
+
+      <default class="link4">
+        <joint range="0 3.14" axis="0 0 1"/>
+        <position ctrlrange="0 3.14">
+      <default>
+
+      <default class="link5">
+        <joint range="0 3.14" axis="0 0 1"/>
+        <position ctrlrange="0 3.14">
+      <default>
+
+
+    
+
+        
         
     </default>
   </default>
