@@ -1,6 +1,6 @@
-<mujoco model="escena_brazo_robotico">
+<mujoco model="escena">
 
-  <include file="brazo_robotico_personalizado.xml"/>
+  <include file="brazorobotico.xml"/>
 
 
   <statistic center="0 0 0.5" extent="1.5"/>
