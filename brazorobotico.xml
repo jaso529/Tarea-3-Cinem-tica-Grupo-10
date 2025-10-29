@@ -160,14 +160,14 @@
 
 <!--se generan los actuadores (motores a actuar en cada joint definido)\-->  
   <actuator>
-    <position class="base" name="base" joint="base_joint"/>
-    <position class="joint1" name="joint1" joint="link1_joint"/>
-    <position class="joint2" name="joint2" joint="cintura_joint"/>
-    <position class="joint2" name="joint2" joint="link2_joint"/>
-    <position class="joint3" name="joint3" joint="codo_joint"/>
-    <position class="joint4" name="joint4" joint="link3_joint"/>
-    <position class="joint4" name="joint4" joint="muñeca_joint"/>
-    <position class="joint5" name="joint5" joint="gripper_joint"/>
+    <position class="base" name="actuador_base" joint="base_joint"/>
+    <position class="joint1" name="actuador_link1" joint="link1_joint"/>
+    <position class="joint2" name="actuador_cintura" joint="cintura_joint"/>
+    <position class="joint2" name="actuador_link2" joint="link2_joint"/>
+    <position class="joint3" name="actuador_codo" joint="codo_joint"/>
+    <position class="joint4" name="actuador_link3" joint="link3_joint"/>
+    <position class="joint4" name="actuador_muñeca" joint="muñeca_joint"/>
+    <position class="joint5" name="actuador_gripper" joint="gripper_joint"/>
   </actuator>
         
         <visual>
