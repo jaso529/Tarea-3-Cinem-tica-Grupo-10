@@ -19,33 +19,33 @@
       <default class="base">
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14"/>
-      <default>
+      </default>
         
      <!--repetimos lo anterior para los otros joints (motores) del brazo robótico-->
       <default class="joint1"> <!--joint que permite rotación entre base y cintura-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14"/>
-      <default>
+      </default>
 
       <default class="joint2"> <!--joint que permite rotación entre cintura y hombro-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14"/>
-      <default>
+      </default>
 
       <default class="joint3"> <!--joint que permite rotación del codo sobre si mismo-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14"/>
-      <default>
+      </default>
 
       <default class="joint4"> <!--joint que permite rotación entre muñeca y gripper-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14"/>
-      <default>
+      </default>
 
       <default class="joint5"> <!--joint que permite rotación del gripper sobre si mismo-->
         <joint range="0 3.14" axis="0 0 1"/>
         <position ctrlrange="0 3.14"/>
-      <default>
+      </default>
 
      <!--generamos las configuraciones por defecto visuales-->
       <default class="visual">
