@@ -10,7 +10,7 @@
     <default class="brazo">
       <geom friction="0.2" margin="0.001"/>
       <joint damping="1.0" armature="0.01"/> 
-      <position kp="60" ctrlrange="-3.141592 3.141592" forcerange="-7 7"/>
+      <position kp="15" ctrlrange="-3.141592 3.141592" forcerange="-7 7"/>
 
 
      <!--las configuraciones básicas para los joints (uniones):-->
