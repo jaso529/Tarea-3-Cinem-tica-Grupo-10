@@ -1,5 +1,5 @@
 <mujoco model="brazo_robotico_personalizado">
-  <compiler angle="radian" meshdir="TU_URL_DE_GITHUB/modelos/" autolimits="true"/>
+  <compiler angle="radian" meshdir="https://github.com/jaso529/Tarea-3-Cinem-tica-Grupo-10/tree/main/modelos" autolimits="true"/>
 
   <option gravity="0 0 -9.81" />
 
