@@ -102,7 +102,7 @@
       <body name="link1_brazo" pos="0 0 0.106"> 
         <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
         <joint class="joint1" name="link1_joint"/>
-        <geom type="mesh" mesh="link1" material="naranja" group="1"  axisangle="1 0 0 90"/> <!--giramos el sistema coordenado DE LA GEOMETRÍA para poder colocar el link 1 horizontal-->
+        <geom type="mesh" mesh="link1" material="naranja" group="1"  axisangle="1 0 0 1.5708"/> <!--giramos el sistema coordenado DE LA GEOMETRÍA para poder colocar el link 1 horizontal-->
 
         <body name="cintura_brazo" pos="0 0 0.01"> <!--posicionamos la base de la cintura en el extremo del primer link-->
             <inertial mass="2.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.01"/>
@@ -111,7 +111,7 @@
             <body name="link2_brazo" pos="0 0 0.344"> <!--posicionamos el inicio del segundo link al final de la cintura-->
                 <inertial mass="2.0" pos="0 0 0.175" diaginertia="0.04 0.04 0.008"/>
                 <joint class="joint2" name="link2_joint"/>
-                <geom type="mesh" mesh="link2" material="azul" group="1" axisangle="1 0 0 -90"/> <!--rotamos en -90 grados-->
+                <geom type="mesh" mesh="link2" material="azul" group="1" axisangle="1 0 0 -1.5708"/> <!--rotamos en -90 grados-->
 
                 <body name="codo_brazo" pos="0 0 0.1205">
                     <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
@@ -121,7 +121,7 @@
                     <body name="link3_brazo" pos="0 0 0.35">
                         <inertial mass="0.3" pos="0 0 0.025" diaginertia="0.001 0.001 0.0005"/>
                         <joint class="joint4" name="link3_joint"/>
-                        <geom type="mesh" mesh="gripper" material="gris" group="1" axisangle="1 0 0 90"/>
+                        <geom type="mesh" mesh="gripper" material="gris" group="1" axisangle="1 0 0 1.5708"/>
                         
                           <body name="muñeca_brazo" pos="0 0 0.11">
                             <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
