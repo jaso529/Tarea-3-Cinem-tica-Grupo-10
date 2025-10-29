@@ -1,5 +1,5 @@
 <mujoco model="brazorobotico">
-  <compiler angle="radian" meshdir="https://github.com/jaso529/Tarea-3-Cinem-tica-Grupo-10/tree/main/modelos" autolimits="true"/>
+  <compiler angle="radian" meshdir="https://raw.githubusercontent.com/jaso529/Tarea-3-Cinem-tica-Grupo-10/main/modelos/" autolimits="true"/>
 
   <option gravity="0 0 -9.81" />
 
