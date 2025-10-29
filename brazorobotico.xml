@@ -1,4 +1,4 @@
-<mujoco model="brazo_robotico_personalizado">
+<mujoco model="brazorobotico">
   <compiler angle="radian" meshdir="https://github.com/jaso529/Tarea-3-Cinem-tica-Grupo-10/tree/main/modelos" autolimits="true"/>
 
   <option gravity="0 0 -9.81" />
