@@ -1,50 +1,30 @@
-<mujoco model="brazorobotico_debug">
+<mujoco model="brazo_prueba">
 
-  <compiler angle="radian" meshdir="modelos" autolimits="true"/>
-
-  <default>
-    <joint type="hinge" damping="1.0" armature="0.01"/> 
-    <position kp="15"/>
-  </default>
+  <compiler meshdir="modelos"/>
 
   <asset>
     <material name="rojo" rgba="0.8 0.2 0.2 1"/>
-    <material name="verde" rgba="0.3 0.6 0.3 1"/>
+    <material name="azul" rgba="0.2 0.5 0.8 1"/>
     <mesh file="base.obj"/>
-    <mesh file="cintura.obj"/>
   </asset>
 
   <worldbody>
     <light name="spotlight" mode="targetbodycom" target="base_brazo" pos="0 -1 2"/>
 
     <body name="base_brazo" pos="0 0 0">
-      <inertial mass="1.5" pos="0 0 0.05" diaginertia="0.01 0.01 0.02"/> <joint name="base_joint" axis="0 0 1" range="-3.14 3.14"/>
+      <inertial mass="1.0" pos="0 0 0" diaginertia="0.1 0.1 0.1"/>
+      <joint type="hinge" name="base_joint" axis="0 0 1"/>
       <geom type="mesh" mesh="base" material="rojo"/>
-      
-      <body name="link1_brazo" pos="0 0 0.106">
-        
-        <inertial mass="0.1" pos="0.05 0 0" diaginertia="0.001 0.001 0.001"/>
 
-        <joint name="link1_joint" axis="0 1 0" range="-1.57 1.57"/>
-        <geom material="verde" size="0.02 0.05" type="cylinder" axisangle="0 1 0 1.5708"/>
-
-        <body name="cintura_brazo" pos="0.1 0 0">
-            <inertial mass="0.2" pos="0 0 0" diaginertia="0.002 0.002 0.002"/>
-            <joint name="cintura_joint" axis="0 0 1" range="-3.14 3.14"/>
-            <geom type="mesh" mesh="cintura" material="verde"/>
-        </body>
-      </body>
+      <body name="pieza_prueba" pos="0 0 0.2">
+        <inertial mass="0.1" pos="0 0 0" diaginertia="0.01 0.01 0.01"/>
+        <joint type="hinge" name="junta_prueba" axis="0 1 0"/> <geom type="sphere" size="0.05" material="azul"/> </body>
     </body>
   </worldbody>
 
   <actuator>
-    <position name="actuador_base" joint="base_joint"/>
-    <position name="actuador_link1" joint="link1_joint"/>
-    <position name="actuador_cintura" joint="cintura_joint"/>
+    <position joint="base_joint" kp="10"/>
+    <position joint="junta_prueba" kp="10"/>
   </actuator>
-
-  <keyframe>
-    <key name="home" qpos="0 0 0" ctrl="0 0 0"/>
-  </keyframe>
 
 </mujoco>
