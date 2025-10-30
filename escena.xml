@@ -1,6 +1,6 @@
 <mujoco model="escena">
 
-  <include file="pruebabrazo1.xml"/>
+  <include file="brazorobotico1.xml"/>
 
 
   <statistic center="0 0 0" extent="300"/>
