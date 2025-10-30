@@ -1,0 +1,116 @@
+<mujoco model="brazorobotico">
+
+  <compiler angle="radian" meshdir="modelos" autolimits="true"/>
+
+  <default>
+    <default class="brazo">
+      <geom friction="0.2" margin="0.001"/>
+      <joint type="hinge" damping="1.0" armature="0.01"/> 
+      <position kp="15" ctrlrange="-3.141592 3.141592" forcerange="-7 7"/>
+
+      <default class="base_rot_z">
+        <joint range="-3.14 3.14" axis="0 0 1"/>
+        <position ctrlrange="-3.14 3.14"/>
+      </default>
+      
+      <default class="rot_y"> <joint range="-1.57 1.57" axis="0 1 0"/>
+        <position ctrlrange="-1.57 1.57"/>
+      </default>
+
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+    </default>
+  </default>
+
+  <asset>
+    <material name="gris" specular="0.5" shininess="0.25" rgba="0.6 0.6 0.6 1"/>
+    <material name="azul" specular="0.5" shininess="0.25" rgba="0.2 0.5 0.8 1"/>
+    <material name="verde" specular="0.5" shininess="0.25" rgba="0.3 0.6 0.3 1"/>
+    <material name="naranja" specular="0.5" shininess="0.25" rgba="0.9 0.4 0.1 1"/>
+    <material name="rojo" specular="0.5" shininess="0.25" rgba="0.8 0.2 0.2 1"/>
+
+    <mesh file="base.obj"/>
+    <mesh file="link1.obj"/>
+    <mesh file="cintura.obj"/>
+    <mesh file="link2.obj"/>
+    <mesh file="hombro.obj"/>
+    <mesh file="link3.obj"/>
+    <mesh file="codo.obj"/>
+    <mesh file="muñeca.obj"/>
+    <mesh file="gripper.obj"/>
+  </asset>
+
+  <worldbody>
+    <light name="spotlight" mode="targetbodycom" target="base_brazo" pos="0 -1 2"/>
+
+    <body name="base_brazo" pos="0 0 0" childclass="brazo">
+      <inertial mass="1.5" pos="0 0 0.05" diaginertia="0.01 0.01 0.02"/>
+      <joint class="base_rot_z" name="base_joint"/>
+      <geom type="mesh" mesh="base" material="rojo" group="1"/>
+
+      <body name="cintura_brazo" pos="0 0 0.106">
+        <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
+        <joint class="base_rot_z" name="cintura_joint"/>
+        <geom type="mesh" mesh="cintura" material="verde" group="1"/>
+        
+        <geom type="mesh" mesh="link1" material="naranja" group="1" pos="0.05 0 0" axisangle="0 1 0 1.5708"/>
+
+        <body name="hombro_brazo" pos="0.1 0 0">
+          <inertial mass="2.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.01"/>
+          <joint class="rot_y" name="hombro_joint"/>
+          <geom type="mesh" mesh="hombro" material="azul" group="1"/>
+          
+          <geom type="mesh" mesh="link2" material="azul" group="1" pos="0 0 0.172"/>
+
+          <body name="codo_brazo" pos="0 0 0.344">
+            <inertial mass="2.0" pos="0.06 0 0" diaginertia="0.04 0.04 0.008"/>
+            <joint class="rot_y" name="codo_joint"/>
+            <geom type="mesh" mesh="codo" material="gris" group="1"/>
+            
+            <geom type="mesh" mesh="link3" material="gris" group="1" pos="0.175 0 0" axisangle="0 1 0 1.5708"/>
+
+            <body name="muneca_brazo" pos="0.350 0 0">
+              <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
+              <joint class="rot_y" name="muneca_joint"/>
+              <geom type="mesh" mesh="muñeca" material="naranja" group="1"/>
+              
+              <body name="gripper_brazo" pos="0 0 0.110">
+                <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
+                <joint class="base_rot_z" name="gripper_joint"/>
+                <geom type="mesh" mesh="gripper" material="verde" group="1"/>
+                <site name="end_effector" pos="0 0 0.1" size="0.01"/>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="base_brazo" body2="cintura_brazo"/>
+    <exclude body1="cintura_brazo" body2="hombro_brazo"/>
+    <exclude body1="hombro_brazo" body2="codo_brazo"/>
+    <exclude body1="codo_brazo" body2="muneca_brazo"/>
+    <exclude body1="muneca_brazo" body2="gripper_brazo"/>
+  </contact>
+
+  <actuator>
+    <position class="base_rot_z" name="actuador_base" joint="base_joint"/>
+    <position class="base_rot_z" name="actuador_cintura" joint="cintura_joint"/>
+    <position class="rot_y" name="actuador_hombro" joint="hombro_joint"/>
+    <position class="rot_y" name="actuador_codo" joint="codo_joint"/>
+    <position class="rot_y" name="actuador_muneca" joint="muneca_joint"/>
+    <position class="base_rot_z" name="actuador_gripper" joint="gripper_joint"/>
+  </actuator>
+    
+  <visual>
+    <global offheight="600" offwidth="800"/>
+  </visual>
+    
+  <keyframe>
+    <key name="home" qpos="0 0 0 0 0 0" ctrl="0 0 0 0 0 0"/>
+  </keyframe>
+    
+</mujoco>
