@@ -12,7 +12,7 @@
     <material name="verde" rgba="0.3 0.6 0.3 1"/>
     <mesh file="base.obj"/>
     <mesh file="link1.obj"/>
-  </asset>
+    <mesh file="cintura.obj"/> </asset>
 
   <worldbody>
     <light name="spotlight" mode="targetbodycom" target="base_brazo" pos="0 -1 2"/>
@@ -23,20 +23,22 @@
       
       <body name="link1_brazo" pos="0 0 0.106">
         <joint name="link1_joint" axis="0 1 0" range="-1.57 1.57"/>
-        
-        <geom type="mesh" mesh="link1" material="verde" pos="0.05 0 0" axisangle="0 1 0 1.5708" />
+        <geom type="mesh" mesh="link1" material="verde" size="0.02 0.05" type="cylinder" axisangle="0 1 0 1.5708"/>
+
+        <body name="cintura_brazo" pos="0.1 0 0"> <joint name="cintura_joint" axis="0 0 1" range="-3.14 3.14"/>
+            <geom type="mesh" mesh="cintura" material="verde"/>
+        </body>
       </body>
-      
     </body>
   </worldbody>
 
   <actuator>
     <position name="actuador_base" joint="base_joint"/>
     <position name="actuador_link1" joint="link1_joint"/>
-  </actuator>
+    <position name="actuador_cintura" joint="cintura_joint"/> </actuator>
 
   <keyframe>
-    <key name="home" qpos="0 0" ctrl="0 0"/>
+    <key name="home" qpos="0 0 0" ctrl="0 0 0"/>
   </keyframe>
 
 </mujoco>
