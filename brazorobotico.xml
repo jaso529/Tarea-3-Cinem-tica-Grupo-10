@@ -100,7 +100,7 @@
 
      <!--primero generamos el primer link-->
       
-      <body name="link1_brazo" pos="0 0 0.106"> 
+      <body name="link1_brazo" pos="0 0 106"> 
         <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
         <joint class="joint1" name="link1_joint"/>
         <geom type="mesh" mesh="link1" material="verde" group="1"  axisangle="1 0 0 1.5708"/> <!--giramos el sistema coordenado DE LA GEOMETRÍA para poder colocar el link 1 horizontal-->
