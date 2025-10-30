@@ -61,6 +61,7 @@
     <material name="azul" specular="0.5" shininess="0.25" rgba="0.2 0.5 0.8 1"/>
     <material name="verde" specular="0.5" shininess="0.25" rgba="0.3 0.6 0.3 1"/>
     <material name="naranja" specular="0.5" shininess="0.25" rgba="0.9 0.4 0.1 1"/>
+    <material name="rojo" specular="0.5" shininess="0.25" rgba="94 69 60 0.8"/>
 
 
    <!--cargamos las mallas (modelos 3D)-->
@@ -92,7 +93,7 @@
       <joint class="base" name="base_joint"/>
 
      <!--asociamos la base a la geometría visible del cuerpo-->
-      <geom type="mesh" mesh="base" material="naranja" group="1"/>
+      <geom type="mesh" mesh="base" material="rojo" group="1"/>
 
      
      <!--ahora necesitamos anidar al resto de partes del brazo-->
