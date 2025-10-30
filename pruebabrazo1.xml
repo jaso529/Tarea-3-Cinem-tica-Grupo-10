@@ -23,8 +23,8 @@
       
       <body name="link1_brazo" pos="0 0 0.106">
         <joint name="link1_joint" axis="0 1 0" range="-1.57 1.57"/>
-        <geom type="mesh" mesh="link1" material="verde" size="0.02 0.05" type="cylinder" axisangle="0 1 0 1.5708"/>
-
+        <geom material="verde" size="0.02 0.05" type="cylinder" axisangle="0 1 0 1.5708"/>
+        
         <body name="cintura_brazo" pos="0.1 0 0"> <joint name="cintura_joint" axis="0 0 1" range="-3.14 3.14"/>
             <geom type="mesh" mesh="cintura" material="verde"/>
         </body>
