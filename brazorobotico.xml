@@ -93,7 +93,7 @@
       <joint class="base" name="base_joint"/>
 
      <!--asociamos la base a la geometría visible del cuerpo-->
-      <geom type="mesh" mesh="base" material="rojo" group="1"/>
+      <geom type="mesh" mesh="base" material="naranja" group="1"/>
 
      
      <!--ahora necesitamos anidar al resto de partes del brazo-->
