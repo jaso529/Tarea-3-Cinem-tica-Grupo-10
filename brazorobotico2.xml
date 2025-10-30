@@ -53,7 +53,7 @@
         <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
         <joint class="rot_z" name="cintura_joint"/>
         <geom type="mesh" mesh="cintura" material="verde" group="1"/>
-        <geom type="mesh" mesh="link1" material="naranja" group="1" pos="0.05 0 0" axisangle="0 1 0 1.5708"/>
+        <geom type="mesh" mesh="link1" material="morado" group="1" pos="0.05 0 0" axisangle="0 1 0 1.5708"/>
 
         <body name="hombro_brazo" pos="0.1 0 0">
           <inertial mass="2.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.01"/>
