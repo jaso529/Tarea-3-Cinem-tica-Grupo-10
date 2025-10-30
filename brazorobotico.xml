@@ -103,7 +103,7 @@
       <body name="link1_brazo" pos="0 0 0.106"> 
         <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
         <joint class="joint1" name="link1_joint"/>
-        <geom type="mesh" mesh="link1" material="naranja" group="1"  axisangle="1 0 0 1.5708"/> <!--giramos el sistema coordenado DE LA GEOMETRÍA para poder colocar el link 1 horizontal-->
+        <geom type="mesh" mesh="link1" material="verde" group="1"  axisangle="1 0 0 1.5708"/> <!--giramos el sistema coordenado DE LA GEOMETRÍA para poder colocar el link 1 horizontal-->
 
         <body name="cintura_brazo" pos="0 0 0.01"> <!--posicionamos la base de la cintura en el extremo del primer link-->
             <inertial mass="2.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.01"/>
