@@ -53,26 +53,26 @@
         <inertial mass="1.0" pos="0 0 0.045" diaginertia="0.008 0.008 0.01"/>
         <joint class="rot_z" name="cintura_joint"/>
         <geom type="mesh" mesh="cintura" material="verde" group="1"/>
-        <geom type="mesh" mesh="link1" material="morado" group="1" pos="0.05 0 0" axisangle="0 1 0 1.5708"/>
+        <geom type="mesh" mesh="link1" material="morado" group="1" pos="0 0 0.094" axisangle="1 0 0 1.5708"/>
 
-        <body name="hombro_brazo" pos="0.1 0 0">
+        <body name="hombro_brazo" pos="0 0.01 0.094">
           <inertial mass="2.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.01"/>
           <joint class="rot_y" name="hombro_joint"/>
           <geom type="mesh" mesh="hombro" material="azul" group="1"/>
-          <geom type="mesh" mesh="link2" material="azul" group="1" pos="0 0 0.172"/>
-
-          <body name="codo_brazo" pos="0 0 0.344">
+          <geom type="mesh" mesh="link2" material="azul" group="1" pos="0 0 0.344" axisangle="1 0 0 -1.5708"/>
+          
+          <body name="codo_brazo" pos="0 -0.1205 0.344">
             <inertial mass="2.0" pos="0.175 0 0" diaginertia="0.04 0.04 0.008"/>
             <joint class="rot_y" name="codo_joint"/>
-            <geom type="mesh" mesh="codo" material="gris" group="1"/>
-            <geom type="mesh" mesh="link3" material="gris" group="1" pos="0.175 0 0" axisangle="0 1 0 1.5708"/>
-
-            <body name="muneca_brazo" pos="0.350 0 0">
+            <geom type="mesh" mesh="codo" material="gris" pos="0 0.11 0" group="1"/>
+            <geom type="mesh" mesh="link3" material="gris" group="1" pos="0 0 0.350" axisangle="0 1 0 1.5708"/>
+          
+            <body name="muneca_brazo" pos="0 0.11 0.350">
               <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
               <joint class="rot_y" name="muneca_joint"/>
               <geom type="mesh" mesh="muñeca" material="naranja" group="1"/>
               
-              <body name="gripper_brazo" pos="0 0 0.110">
+              <body name="gripper_brazo" pos="0 0 0.1">
                 <inertial mass="0.5" pos="0 0 0.05" diaginertia="0.002 0.002 0.001"/>
                 <joint class="rot_z" name="gripper_joint"/>
                 <geom type="mesh" mesh="gripper" material="verde" group="1"/>
