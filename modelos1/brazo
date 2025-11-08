@@ -1,4 +1,4 @@
-<mujoco model="brazo6DOF">
+<mujoco model="brazo">
 
   <compiler angle="radian" meshdir="modelos" autolimits="true"/>
 
