@@ -1,0 +1,66 @@
+<mujoco model="brazo">
+
+  <compiler angle="radian" meshdir="modelos" autolimits="true"/>
+
+  <default>
+    <joint type="hinge" damping="1.0" armature="0.01"/>
+    <position kp="15" forcerange="-100 100"/>
+
+    <default class="rot_z">
+      <joint axis="0 0 1" range="-3.14 3.14"/>
+    </default>
+
+    <default class="rot_y">
+      <joint axis="0 1 0" range="-1.57 1.57"/>
+    </default>
+  </default>
+
+  <asset>
+    <material name="gris" rgba="0.6 0.6 0.6 1"/>
+    <material name="rojo" rgba="0.8 0.2 0.2 1"/>
+    
+    <mesh file="base.obj"/>
+    <mesh file="link1.obj"/>
+    <mesh file="hombro.obj"/>
+    <mesh file="link2.obj"/>
+    <mesh file="antebrazo.obj"/>
+    <mesh file="link3.obj"/>
+    <mesh file="gripper.obj"/>
+  </asset>
+
+  <worldbody>
+    <light name="spotlight" mode="targetbodycom" target="base" pos="0 -1 2"/>
+
+    <body name="base" pos="0 0 0">
+      <inertial mass="1.0" pos="0 0 0.1" diaginertia="0.1 0.1 0.1"/> <joint class="rot_z" name="q0_base"/>
+      <geom type="mesh" mesh="base" material="rojo"/>
+
+      <body name="link1" pos="0 0 0.2">
+        <inertial mass="0.1" pos="0.02 0 0" diaginertia="0.01 0.01 0.01"/>
+        <geom type="mesh" mesh="link1" material="gris" axisangle="0 1 0 1.5708"/>
+
+        <body name="hombro" pos="0.04 0 0">
+          <inertial mass="0.5" pos="0 0 0.17" diaginertia="0.05 0.05 0.05"/>
+          <joint class="rot_y" name="q1_hombro"/> <geom type="mesh" mesh="hombro" material="rojo"/> <body name="link2" pos="0 0 0.344">
+            <inertial mass="0.3" pos="0.06 0 0" diaginertia="0.03 0.03 0.03"/>
+            <joint class="rot_y" name="q2_link2"/> <geom type="mesh" mesh="link2" material="gris" axisangle="0 1 0 1.5708"/>
+
+            <body name="antebrazo" pos="0.1205 0 0">
+              <inertial mass="0.4" pos="0 0 0.175" diaginertia="0.04 0.04 0.04"/>
+              <joint class="rot_z" name="q3_antebrazo"/> <geom type="mesh" mesh="antebrazo" material="rojo"/> <body name="link3" pos="0 0 0.35">
+                <inertial mass="0.2" pos="0.055 0 0" diaginertia="0.02 0.02 0.02"/>
+                <joint class="rot_y" name="q4_link3"/> <geom type="mesh" mesh="link3" material="gris" axisangle="0 1 0 1.5708"/>
+
+                <body name="gripper" pos="0.11 0 0">
+                  <inertial mass="0.1" pos="0 0 0.075" diaginertia="0.01 0.01 0.01"/>
+                  <joint class="rot_z" name="q5_gripper"/> <geom type="mesh" mesh="gripper" material="rojo"/>
+
+                  <site name="eef" pos="0 0 0.15" size="0.01"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
