@@ -1,6 +1,6 @@
 <mujoco model="escena_brazo">
 
-  <include file="brazorobotico.xml"/>
+  <include file="brazorobotico3.xml"/>
 
   <asset>
     <texture type="2d" name="groundplane" builtin="checker" ... />
