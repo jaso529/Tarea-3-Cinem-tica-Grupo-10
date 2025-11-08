@@ -1,0 +1,100 @@
+<mujoco model="brazo_6dof">
+  <compiler angle="radian" autolimits="true"/>
+
+  <default>
+    <default class="brazo_6dof">
+      <geom friction="0.2" margin="0.001" type="cylinder" contype="0" conaffinity="0" group="2"/>
+      <joint damping="1.0" armature="0.01"/>
+      
+      <default class="j_rot_z">
+        <joint axis="0 0 1" range="-3.14 3.14"/>
+        <position ctrlrange="-3.14 3.14" kp="100" forcerange="-15 15"/>
+      </default>
+      <default class="j_rot_y">
+        <joint axis="0 1 0" range="-1.57 1.57"/>
+        <position ctrlrange="-1.57 1.57" kp="100" forcerange="-15 15"/>
+      </default>
+
+      <default class="mat_base">
+        <geom material="mat_base"/>
+      </default>
+      <default class="mat_link_horiz">
+        <geom material="mat_link_horiz"/>
+      </default>
+      <default class="mat_hombro">
+        <geom material="mat_hombro"/>
+      </default>
+      <default class="mat_antebrazo">
+        <geom material="mat_antebrazo"/>
+      </default>
+      <default class="mat_gripper">
+        <geom material="mat_gripper"/>
+      </default>
+    </default>
+  </default>
+
+  <asset>
+    <material name="mat_base" specular="0" shininess="0.25" rgba="0.5 0.5 0.5 1"/> <material name="mat_link_horiz" specular="0" shininess="0.25" rgba="0.2 0.2 0.2 1"/> <material name="mat_hombro" specular="0" shininess="0.25" rgba="0.8 0.1 0.1 1"/> <material name="mat_antebrazo" specular="0" shininess="0.25" rgba="0.1 0.1 0.8 1"/> <material name="mat_gripper" specular="0" shininess="0.25" rgba="0.1 0.8 0.1 1"/> </asset>
+
+
+  <worldbody>
+    <light name="spotlight" mode="targetbodycom" target="base_link" pos="0 -1 2"/>
+
+    <body name="base_link" pos="0 0 0" childclass="brazo_6dof">
+      <inertial mass="1.0" pos="0 0 0.10" diaginertia="0.01 0.01 0.01"/>
+      <geom class="mat_base" fromto="0 0 0  0 0 0.20" size="0.08"/>
+
+      <body name="link_1" pos="0 0 0.20">
+        <joint class="j_rot_z" name="j0_base" pos="0 0 0"/>
+        <inertial mass="0.1" pos="0 0.005 0" diaginertia="0.001 0.001 0.001"/>
+        <geom class="mat_link_horiz" fromto="0 0 0  0 0.01 0" size="0.03"/>
+
+        <body name="hombro_link" pos="0 0.01 0">
+          <joint class="j_rot_y" name="j1_hombro" pos="0 0 0"/>
+          <inertial mass="0.5" pos="0 0 -0.172" diaginertia="0.01 0.01 0.01"/>
+          <geom class="mat_hombro" fromto="0 0 0  0 0 -0.344" size="0.05"/>
+
+          <body name="link_2" pos="0 0 -0.344">
+            <joint class="j_rot_y" name="j2_link2" pos="0 0 0"/>
+            <inertial mass="0.2" pos="0 0.06 0" diaginertia="0.005 0.005 0.005"/>
+            <geom class="mat_link_horiz" fromto="0 0 0  0 0.1205 0" size="0.03"/>
+
+            <body name="antebrazo_link" pos="0 0.1205 0">
+              <joint class="j_rot_z" name="j3_antebrazo" pos="0 0 0"/>
+              <inertial mass="0.5" pos="0 0 0.175" diaginertia="0.01 0.01 0.01"/>
+              <geom class="mat_antebrazo" fromto="0 0 0  0 0 0.35" size="0.05"/>
+
+              <body name="link_3" pos="0 0 0.35">
+                <joint class="j_rot_y" name="j4_link3" pos="0 0 0"/>
+                <inertial mass="0.2" pos="0 0.055 0" diaginertia="0.005 0.005 0.005"/>
+                <geom class="mat_link_horiz" fromto="0 0 0  0 0.11 0" size="0.03"/>
+
+                <body name="gripper_link" pos="0 0.11 0">
+                  <joint class="j_rot_z" name="j5_gripper" pos="0 0 0"/>
+                  <inertial mass="0.1" pos="0 0 0.075" diaginertia="0.001 0.001 0.001"/>
+                  <geom class="mat_gripper" fromto="0 0 0  0 0 0.15" size="0.04"/>
+                  
+                  <site name="eef" pos="0 0 0.15" size="0.01"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position class="j_rot_z" name="act_j0" joint="j0_base"/>
+    <position class="j_rot_y" name="act_j1" joint="j1_hombro"/>
+    <position class="j_rot_y" name="act_j2" joint="j2_link2"/>
+    <position class="j_rot_z" name="act_j3" joint="j3_antebrazo"/>
+    <position class="j_rot_y" name="act_j4" joint="j4_link3"/>
+    <position class="j_rot_z" name="act_j5" joint="j5_gripper"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0 0 0 0" ctrl="0 0 0 0 0 0"/>
+  </keyframe>
+
+</mujoco>
