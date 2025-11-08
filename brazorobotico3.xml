@@ -1,6 +1,6 @@
 <mujoco model="brazo">
 
-  <compiler angle="radian" meshdir="modelos" autolimits="true"/>
+  <compiler angle="radian" meshdir="modelos1" autolimits="true"/>
 
   <default>
     <joint type="hinge" damping="1.0" armature="0.01"/>
