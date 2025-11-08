@@ -64,4 +64,27 @@
       </body>
     </body>
   </worldbody>
+
+  <contact>
+    <exclude body1="base" body2="link1"/>
+    <exclude body1="link1" body2="hombro"/>
+    <exclude body1="hombro" body2="link2"/>
+    <exclude body1="link2" body2="antebrazo"/>
+    <exclude body1="antebrazo" body2="link3"/>
+    <exclude body1="link3" body2="gripper"/>
+  </contact>
+
+  <actuator>
+    <position class="rot_z" name="actuador_q0" joint="q0_base"/>
+    <position class="rot_y" name="actuador_q1" joint="q1_hombro"/>
+    <position class="rot_y" name="actuador_q2" joint="q2_link2"/>
+    <position class="rot_z" name="actuador_q3" joint="q3_antebrazo"/>
+    <position class="rot_y" name="actuador_q4" joint="q4_link3"/>
+    <position class="rot_z" name="actuador_q5" joint="q5_gripper"/>
+  </actuator>
+  
+  <keyframe>
+    <key name="home" qpos="0 0 0 0 0 0" ctrl="0 0 0 0 0 0"/>
+  </keyframe>
+
 </mujoco>
