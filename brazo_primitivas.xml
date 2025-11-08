@@ -27,13 +27,13 @@
           <geom type="cylinder" size="0.03 0.172" pos="0 0 0.172" material="mat_hombro"/>
 
           <body name="link2" pos="0 0 0.344">
-            <joint class="rot_y" name="q2_link2"/> <geom type="cylinder" size="0.02 0.06025" pos="0.06025 0 0" material="mat_l2" axisangle="0 1 0 1.5708"/>
+            <joint class="rot_y" name="q2_link2"/><geom type="cylinder" size="0.02 0.06025" pos="0.06025 0 0" material="mat_link2" axisangle="0 1 0 1.5708"/>
 
             <body name="antebrazo" pos="0.1205 0 0">
               <joint class="rot_z" name="q3_antebrazo"/> <geom type="cylinder" size="0.03 0.175" pos="0 0 0.175" material="mat_antebrazo"/>
 
               <body name="link3" pos="0 0 0.35">
-                <joint class="rot_y" name="q4_link3"/> <geom type="cylinder" size="0.02 0.055" pos="0.055 0 0" material="mat_l3" axisangle="0 1 0 1.5708"/>
+                <joint class="rot_y" name="q4_link3"/> <geom type="cylinder" size="0.02 0.055" pos="0.055 0 0" material="mat_link3" axisangle="0 1 0 1.5708"/>
 
                 <body name="gripper" pos="0.11 0 0">
                   <joint class="rot_z" name="q5_gripper"/> <geom type="cylinder" size="0.02 0.075" pos="0 0 0.075" material="mat_gripper"/>
