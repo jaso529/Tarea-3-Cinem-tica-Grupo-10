@@ -1,4 +1,4 @@
-<mujoco model="brazo_6dof">
+<mujoco model="brazorobotico">
   <compiler angle="radian" autolimits="true"/>
 
   <default>
@@ -51,10 +51,10 @@
 
         <body name="hombro_link" pos="0 0.01 0">
           <joint class="j_rot_y" name="j1_hombro" pos="0 0 0"/>
-          <inertial mass="0.5" pos="0 0 -0.172" diaginertia="0.01 0.01 0.01"/>
-          <geom class="mat_hombro" fromto="0 0 0  0 0 -0.344" size="0.05"/>
+          <inertial mass="0.5" pos="0 0 0.172" diaginertia="0.01 0.01 0.01"/>
+          <geom class="mat_hombro" fromto="0 0 0  0 0 0.344" size="0.05"/>
 
-          <body name="link_2" pos="0 0 -0.344">
+          <body name="link_2" pos="0 0 0.344">
             <joint class="j_rot_y" name="j2_link2" pos="0 0 0"/>
             <inertial mass="0.2" pos="0 0.06 0" diaginertia="0.005 0.005 0.005"/>
             <geom class="mat_link_horiz" fromto="0 0 0  0 0.1205 0" size="0.03"/>
