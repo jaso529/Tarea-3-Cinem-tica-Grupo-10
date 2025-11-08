@@ -4,15 +4,15 @@
   <default>
     <default class="brazo_6dof">
       <geom friction="0.2" margin="0.001" type="cylinder" contype="0" conaffinity="0" group="2"/>
-      <joint damping="1.0" armature="0.01"/>
+      <joint damping="10.0" armature="0.01"/>
       
       <default class="j_rot_z">
         <joint axis="0 0 1" range="-3.14 3.14"/>
-        <position ctrlrange="-3.14 3.14" kp="100" forcerange="-15 15"/>
+        <position ctrlrange="-3.14 3.14" kp="50" forcerange="-15 15"/>
       </default>
       <default class="j_rot_y">
         <joint axis="0 1 0" range="-1.57 1.57"/>
-        <position ctrlrange="-1.57 1.57" kp="100" forcerange="-15 15"/>
+        <position ctrlrange="-1.57 1.57" kp="50" forcerange="-15 15"/>
       </default>
 
       <default class="mat_base">
