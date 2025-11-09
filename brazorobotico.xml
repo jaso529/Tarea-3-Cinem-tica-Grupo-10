@@ -14,11 +14,11 @@
       <joint damping="10.0" armature="0.01"/>
 
       <!--las configuraciones básicas para los joints (uniones):-->
-      <default class="j_rot_z">
+      <default class="q_rot_z">
         <joint axis="0 0 1" range="-3.14 3.14"/>
         <position ctrlrange="-3.14 3.14" kp="15" forcerange="-15 15"/>
       </default>
-      <default class="j_rot_y">
+      <default class="q_rot_y">
         <joint axis="0 1 0" range="-1.57 1.57"/>
         <position ctrlrange="-1.57 1.57" kp="15" forcerange="-15 15"/>
       </default>
@@ -68,32 +68,32 @@
       <body name="link_1" pos="0 0 0.20">
 
          <!--para cada parte que rote se le deberá asociar un "joint" de los definidos anteriormente-->
-        <joint class="j_rot_z" name="j0_base" pos="0 0 0"/>
+        <joint class="q_rot_z" name="q0_base" pos="0 0 0"/>
         <inertial mass="0.1" pos="0 0.005 0" diaginertia="0.001 0.001 0.001"/>
         <geom class="mat_link_horiz" fromto="0 0 0  0 0.01 0" size="0.03"/>
 
         <body name="hombro_link" pos="0 0.01 0">
-          <joint class="j_rot_y" name="j1_hombro" pos="0 0 0"/>
+          <joint class="q_rot_y" name="q1_hombro" pos="0 0 0"/>
           <inertial mass="0.5" pos="0 0 0.172" diaginertia="0.01 0.01 0.01"/>
           <geom class="mat_hombro" fromto="0 0 0  0 0 0.344" size="0.05"/>
 
           <body name="link_2" pos="0 0 0.344">
-            <joint class="j_rot_y" name="j2_link2" pos="0 0 0"/>
+            <joint class="q_rot_y" name="q2_link2" pos="0 0 0"/>
             <inertial mass="0.2" pos="0 0.06 0" diaginertia="0.005 0.005 0.005"/>
             <geom class="mat_link_horiz" fromto="0 0 0  0 0.1205 0" size="0.03"/>
 
             <body name="antebrazo_link" pos="0 0.1205 0">
-              <joint class="j_rot_z" name="j3_antebrazo" pos="0 0 0"/>
+              <joint class="q_rot_z" name="q3_antebrazo" pos="0 0 0"/>
               <inertial mass="0.5" pos="0 0 0.175" diaginertia="0.01 0.01 0.01"/>
               <geom class="mat_antebrazo" fromto="0 0 0  0 0 0.35" size="0.05"/>
 
               <body name="link_3" pos="0 0 0.35">
-                <joint class="j_rot_y" name="j4_link3" pos="0 0 0"/>
+                <joint class="q_rot_y" name="q4_link3" pos="0 0 0"/>
                 <inertial mass="0.2" pos="0 0.055 0" diaginertia="0.005 0.005 0.005"/>
                 <geom class="mat_link_horiz" fromto="0 0 0  0 0.11 0" size="0.03"/>
 
                 <body name="gripper_link" pos="0 0.11 0">
-                  <joint class="j_rot_z" name="j5_gripper" pos="0 0 0"/>
+                  <joint class="q_rot_z" name="q5_gripper" pos="0 0 0"/>
                   <inertial mass="0.1" pos="0 0 0.075" diaginertia="0.001 0.001 0.001"/>
                   <geom class="mat_gripper" fromto="0 0 0  0 0 0.15" size="0.04"/>
                   
@@ -109,12 +109,12 @@
 
    <!--se generan los actuadores (motores a actuar en cada joint definido)\-->  
   <actuator>
-    <position class="j_rot_z" name="act_j0" joint="j0_base"/>
-    <position class="j_rot_y" name="act_j1" joint="j1_hombro"/>
-    <position class="j_rot_y" name="act_j2" joint="j2_link2"/>
-    <position class="j_rot_z" name="act_j3" joint="j3_antebrazo"/>
-    <position class="j_rot_y" name="act_j4" joint="j4_link3"/>
-    <position class="j_rot_z" name="act_j5" joint="j5_gripper"/>
+    <position class="q_rot_z" name="act_q0" joint="q0_base"/>
+    <position class="q_rot_y" name="act_q1" joint="q1_hombro"/>
+    <position class="q_rot_y" name="act_q2" joint="q2_link2"/>
+    <position class="q_rot_z" name="act_q3" joint="q3_antebrazo"/>
+    <position class="q_rot_y" name="act_q4" joint="q4_link3"/>
+    <position class="q_rot_z" name="act_q5" joint="q5_gripper"/>
   </actuator>
 
   <keyframe>
