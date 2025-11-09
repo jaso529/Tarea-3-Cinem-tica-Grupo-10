@@ -14,11 +14,11 @@
       <joint damping="10.0" armature="0.01"/>
 
       <!--las configuraciones básicas para los joints (uniones):-->
-      <default class="q_rot_z">
+      <default class="q_rot_z">  <!--este joint me permitirá darle movimientos a las partes del brazo alrededor del eje z mas adelante-->
         <joint axis="0 0 1" range="-3.14 3.14"/>
         <position ctrlrange="-3.14 3.14" kp="15" forcerange="-15 15"/>
       </default>
-      <default class="q_rot_y">
+      <default class="q_rot_y"> <!--este joint me permitirá darle movimientos a las partes del brazo alrededor del eje y mas adelante-->
         <joint axis="0 1 0" range="-1.57 1.57"/>
         <position ctrlrange="-1.57 1.57" kp="15" forcerange="-15 15"/>
       </default>
