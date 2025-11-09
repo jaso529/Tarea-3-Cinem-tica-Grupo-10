@@ -1,11 +1,19 @@
+<!--basándonos en el código proporcionado por el equipo docente-->
+<!--se crea el modelo con nombre "brazorobotico"-->
 <mujoco model="brazorobotico">
+  
+   <!--se setean las unidades de los ángulos a radianes y el repositorio de donde se sacarán los modelos-->
   <compiler angle="radian" autolimits="true"/>
 
+   <!--se crean las configuraciones generales del brazo, como la resistencia al giro y la inercia del motor-->
   <default>
-    <default class="brazo_6dof">
+    <default class="brazo">
+
+       <!--para toda la clase brazo se ocuparan cilindros, de aquí lo simple y el cambio con los códigos que intentabmos hacer antes. cargamos un cilindro dentro del código-->
       <geom friction="0.2" margin="0.001" type="cylinder" contype="0" conaffinity="0" group="2"/>
       <joint damping="10.0" armature="0.01"/>
-      
+
+      <!--las configuraciones básicas para los joints (uniones):-->
       <default class="j_rot_z">
         <joint axis="0 0 1" range="-3.14 3.14"/>
         <position ctrlrange="-3.14 3.14" kp="15" forcerange="-15 15"/>
@@ -15,6 +23,7 @@
         <position ctrlrange="-1.57 1.57" kp="15" forcerange="-15 15"/>
       </default>
 
+       <!--además creamos los materiales de cada parte para después darle un color y poder diferenciar facilmente-->
       <default class="mat_base">
         <geom material="mat_base"/>
       </default>
@@ -34,17 +43,31 @@
   </default>
 
   <asset>
+
+     <!--se definen los colores con rgba-->
     <material name="mat_base" specular="0" shininess="0.25" rgba="0.5 0.5 0.5 1"/> <material name="mat_link_horiz" specular="0" shininess="0.25" rgba="0.2 0.2 0.2 1"/> <material name="mat_hombro" specular="0" shininess="0.25" rgba="0.8 0.1 0.1 1"/> <material name="mat_antebrazo" specular="0" shininess="0.25" rgba="0.1 0.1 0.8 1"/> <material name="mat_gripper" specular="0" shininess="0.25" rgba="0.1 0.8 0.1 1"/> </asset>
 
 
+   <!--en la siguiente sección vamos a generar el brazo robótico como tal-->
   <worldbody>
+    
+     <!--generamos iluminación de la escena-->
     <light name="spotlight" mode="targetbodycom" target="base_link" pos="0 -1 2"/>
 
-    <body name="base_link" pos="0 0 0" childclass="brazo_6dof">
+     <!--iniciamos cargando la base como "hija" del brazo, estará en el origen del sistema (se relaciona con el cuerpo padre (brazo)-->
+    <body name="base_link" pos="0 0 0" childclass="brazo">
+
+       <!--definimos una inercia-->
       <inertial mass="1.0" pos="0 0 0.10" diaginertia="0.01 0.01 0.01"/>
+
+       <!--le asignamos una geometría visible y su ubicación en el espacio-->
       <geom class="mat_base" fromto="0 0 0  0 0 0.20" size="0.08"/>
 
+
+       <!--comenzamos a anidar las piezas "hijas" de la base-->
       <body name="link_1" pos="0 0 0.20">
+
+         <!--para cada parte que rote se le deberá asociar un "joint" de los definidos anteriormente-->
         <joint class="j_rot_z" name="j0_base" pos="0 0 0"/>
         <inertial mass="0.1" pos="0 0.005 0" diaginertia="0.001 0.001 0.001"/>
         <geom class="mat_link_horiz" fromto="0 0 0  0 0.01 0" size="0.03"/>
@@ -84,6 +107,7 @@
     </body>
   </worldbody>
 
+   <!--se generan los actuadores (motores a actuar en cada joint definido)\-->  
   <actuator>
     <position class="j_rot_z" name="act_j0" joint="j0_base"/>
     <position class="j_rot_y" name="act_j1" joint="j1_hombro"/>
